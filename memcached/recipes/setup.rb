@@ -14,6 +14,7 @@ template '/etc/sysconfig/memcached' do
   group 'root'
   mode 0644
   variables(
+    :instance_type => search("aws_opsworks_instance", "self:true").first[:instance_type],
     :user => node[:memcached][:user],
     :port => node[:memcached][:port]
   )

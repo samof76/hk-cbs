@@ -1,4 +1,4 @@
-name             'Memcached'
+name             'memcached'
 maintainer       'loremipsum Inc'
 maintainer_email 'devops@loremipsum.com'
 license          'All rights reserved'

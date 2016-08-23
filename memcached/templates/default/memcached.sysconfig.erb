@@ -1,7 +1,7 @@
 <%
-	case search("aws_opsworks_instance", "self:true").first[:instance_type]
+  case @instance_type
   when 'm1.small'
-		node.set[:memcached][:memory] = 64
+    node.set[:memcached][:memory] = 64
     node.set[:memcached][:max_connections] = 2048
   when 'c1.medium'
     node.set[:memcached][:memory] = 128
