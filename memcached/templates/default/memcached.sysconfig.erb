@@ -1,0 +1,42 @@
+<%
+	case search("aws_opsworks_instance", "self:true").first[:instance_type]
+  when 'm1.small'
+		node.set[:memcached][:memory] = 64
+    node.set[:memcached][:max_connections] = 2048
+  when 'c1.medium'
+    node.set[:memcached][:memory] = 128
+    node.set[:memcached][:max_connections] = 2048
+  when 'c1.xlarge'
+    node.set[:memcached][:memory] = 4000
+    node.set[:memcached][:max_connections] = 2048
+  when 'm1.large'
+    node.set[:memcached][:memory] = 5000
+    node.set[:memcached][:max_connections] = 20480
+  when 'm1.xlarge'
+    node.set[:memcached][:memory] = 12000
+    node.set[:memcached][:max_connections] = 30480
+  when 'm2.xlarge'
+    node.set[:memcached][:memory] = 14000
+    node.set[:memcached][:max_connections] = 30480
+  when 'm3.xlarge'
+    node.set[:memcached][:memory] = 12000
+    node.set[:memcached][:max_connections] = 30480
+  when 'm2.2xlarge'
+    node.set[:memcached][:memory] = 28000
+    node.set[:memcached][:max_connections] = 65535
+  when 'm2.4xlarge'
+    node.set[:memcached][:memory] = 60000
+    node.set[:memcached][:max_connections] = 65535
+  else
+    node.set[:memcached][:memory] = 128
+    node.set[:memcached][:max_connections] = 2048
+	end
+%>
+
+PORT='<%= @port %>'
+USER='<%= @user %>'
+MAXCONN='<%= node[:memcached][:max_connections] %>'
+CACHESIZE='<%= node[:memcached][:memory] %>'
+OPTIONS='-v'
+I=128m
+R=40
